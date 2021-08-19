@@ -101,13 +101,14 @@ namespace WebAPI.AddControllers
       {
         DeleteBookCommand command = new DeleteBookCommand(_context);
         command.BookId = id;
+        DeleteBookCommandValidator validator = new DeleteBookCommandValidator();
+        validator.ValidateAndThrow(command);
         command.Handle();
       }
       catch (Exception ex)
       {
         return BadRequest(ex.Message);
       }
-
       return Ok();
     }
 
