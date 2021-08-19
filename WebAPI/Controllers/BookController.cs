@@ -1,5 +1,7 @@
 using System;
 using AutoMapper;
+using FluentValidation;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using WebAPI.BookOperations.CreateBook;
 using WebAPI.BookOperations.DeleteBook;
@@ -56,7 +58,13 @@ namespace WebAPI.AddControllers
       try
       {
         command.Model = newBook;
-        command.Handle();
+
+        CreateBookCommandValidator validator = new CreateBookCommandValidator();
+        ValidationResult result = validator.Validate(command);
+
+        validator.ValidateAndThrow(command);
+
+        command.Handle();       
       }
       catch (Exception ex)
       {
