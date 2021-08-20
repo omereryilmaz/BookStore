@@ -15,6 +15,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using WebAPI.DBOperations;
 using WebAPI.Middlewares;
+using WebAPI.Services;
 
 namespace WebAPI
 {
@@ -30,7 +31,6 @@ namespace WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -39,6 +39,7 @@ namespace WebAPI
 
             services.AddDbContext<BookStoreDbContext>(options => options.UseInMemoryDatabase(databaseName: "BookStoreDB"));
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            services.AddSingleton<ILoggerService, DbLogger>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
