@@ -21,23 +21,33 @@ namespace WebAPI.Middlewares
 
     public async Task Invoke(HttpContext context)
     {
+      // Start timer to calculate response time
       var watch = Stopwatch.StartNew();
 
       try
       {
+        // Create log message for requests
         string message = "[Request]  HTTP " + context.Request.Method +
           " - " + context.Request.Path;
-        _loggerService.Write(message);
-        await _next(context); // bir sonraki middleware calistir
 
+        // Write log message using logger service
+        _loggerService.Write(message);
+        
+        // Run next middleware
+        await _next(context);
+
+        // Stop timer
         watch.Stop();
+        // Create log message for responses
         message = "[Response] HTTP " + context.Request.Method +
           " - " + context.Request.Path + " responded " +
           context.Response.StatusCode + " in " + watch.Elapsed.TotalMilliseconds + " ms";
+        // Write log message using logger service
         _loggerService.Write(message);
       }
       catch (Exception ex)
       {
+        // Stop timer
         watch.Stop();
         await HandlException(context, ex, watch);
       }
@@ -46,12 +56,16 @@ namespace WebAPI.Middlewares
     {
       context.Response.ContentType = "application/json";
       context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-
+      
+      // Create log message for errors
       string message = "[Error]   HTTP " + context.Request.Method +
         " - " + context.Response.StatusCode + " Error Message: " +
         ex.Message + " in " + watch.Elapsed.TotalMilliseconds + " ms";
+      
+      // Write log message using logger service
       _loggerService.Write(message);
-
+      
+      // Convert object to JSON
       var result = JsonConvert.SerializeObject(new { error = ex.Message }, Formatting.None);
       return context.Response.WriteAsync(result);
     }
@@ -59,6 +73,7 @@ namespace WebAPI.Middlewares
 
   public static class CustomExceptionMiddlewareExtension
   {
+    // Adding custom middleware
     public static IApplicationBuilder UseCustomExceptionMiddle(this IApplicationBuilder builder)
     {
       return builder.UseMiddleware<CustomExceptionMiddleware>();

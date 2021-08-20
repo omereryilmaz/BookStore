@@ -39,6 +39,8 @@ namespace WebAPI
 
             services.AddDbContext<BookStoreDbContext>(options => options.UseInMemoryDatabase(databaseName: "BookStoreDB"));
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
+            // Log writing service
             services.AddSingleton<ILoggerService, DbLogger>();
         }
 
@@ -57,7 +59,8 @@ namespace WebAPI
             app.UseRouting();
 
             app.UseAuthorization();
-
+            
+            // Custom exception middleware
             app.UseCustomExceptionMiddle();
 
             app.UseEndpoints(endpoints =>

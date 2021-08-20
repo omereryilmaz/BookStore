@@ -1,7 +1,6 @@
 using System;
 using AutoMapper;
 using FluentValidation;
-using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using WebAPI.BookOperations.CreateBook;
 using WebAPI.BookOperations.DeleteBook;
@@ -40,9 +39,11 @@ namespace WebAPI.AddControllers
     {
       GetBookDetailQuery query = new GetBookDetailQuery(_context, _mapper);
       query.BookId = id;
-
+      // Model validation process
       GetBookDetailQueryValidation validator = new GetBookDetailQueryValidation();
+      // If validation result is not valid, throw exception - FluentValidation
       validator.ValidateAndThrow(query);
+    
       var result = query.Handle();
 
       return Ok(result);
@@ -53,11 +54,11 @@ namespace WebAPI.AddControllers
     {
       CreateBookCommand command = new CreateBookCommand(_context, _mapper);
       command.Model = newBook;
-
+      // Model validation process
       CreateBookCommandValidator validator = new CreateBookCommandValidator();
-      ValidationResult result = validator.Validate(command);
-
+      // If validation result is not valid, throw exception - FluentValidation
       validator.ValidateAndThrow(command);
+
       command.Handle();
 
       return Ok();
@@ -70,8 +71,9 @@ namespace WebAPI.AddControllers
       UpdateBookCommand command = new UpdateBookCommand(_context);
       command.BookId = id;
       command.Model = updatedBook;
-
+      // Model validation process
       UpdateBookCommandValidator validator = new UpdateBookCommandValidator();
+      // If validation result is not valid, throw exception - FluentValidation
       validator.ValidateAndThrow(command);
       command.Handle();
 
@@ -83,8 +85,11 @@ namespace WebAPI.AddControllers
     {
       DeleteBookCommand command = new DeleteBookCommand(_context);
       command.BookId = id;
+      // Model validation process
       DeleteBookCommandValidator validator = new DeleteBookCommandValidator();
+      // If validation result is not valid, throw exception - FluentValidation
       validator.ValidateAndThrow(command);
+  
       command.Handle();
 
       return Ok();
