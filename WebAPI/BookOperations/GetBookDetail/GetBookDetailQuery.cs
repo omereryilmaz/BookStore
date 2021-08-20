@@ -1,8 +1,8 @@
 using System;
 using System.Linq;
 using AutoMapper;
-using WebAPI.Common;
 using WebAPI.DBOperations;
+using WebAPI.Entities;
 
 namespace WebAPI.BookOperations.GetBookDetail
 {
