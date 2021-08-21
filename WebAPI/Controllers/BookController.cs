@@ -2,11 +2,11 @@ using System;
 using AutoMapper;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
-using WebAPI.Application.BookOperations.CreateBook;
-using WebAPI.Application.BookOperations.DeleteBook;
-using WebAPI.Application.BookOperations.GetBookDetail;
-using WebAPI.Application.BookOperations.GetBooks;
-using WebAPI.Application.BookOperations.UpdateBook;
+using WebAPI.Application.BookOperations.Commands.CreateBook;
+using WebAPI.Application.BookOperations.Commands.DeleteBook;
+using WebAPI.Application.BookOperations.Queries.GetBookDetail;
+using WebAPI.Application.BookOperations.Queries.GetBooks;
+using WebAPI.Application.BookOperations.Commands.UpdateBook;
 using WebAPI.DBOperations;
 
 namespace WebAPI.AddControllers

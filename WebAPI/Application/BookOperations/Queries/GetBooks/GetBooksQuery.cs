@@ -4,7 +4,7 @@ using AutoMapper;
 using WebAPI.DBOperations;
 using WebAPI.Entities;
 
-namespace WebAPI.Application.BookOperations.GetBooks
+namespace WebAPI.Application.BookOperations.Queries.GetBooks
 {
   public class GetBooksQuery
   {

@@ -6,7 +6,7 @@ using WebAPI.Common;
 using WebAPI.DBOperations;
 using WebAPI.Entities;
 
-namespace WebAPI.Application.BookOperations.CreateBook
+namespace WebAPI.Application.BookOperations.Commands.CreateBook
 {
   public class CreateBookCommand
   {
