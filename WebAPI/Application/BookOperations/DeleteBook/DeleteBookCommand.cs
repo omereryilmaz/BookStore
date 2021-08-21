@@ -3,16 +3,15 @@ using System.Linq;
 using WebAPI.Common;
 using WebAPI.DBOperations;
 
-namespace WebAPI.BookOperations.UpdateBook
+namespace WebAPI.Application.BookOperations.DeleteBook
 {
-  public class UpdateBookCommand
+  public class DeleteBookCommand
   {
     private readonly BookStoreDbContext _dbContext;
 
     public int BookId { get; set; }
-    public UpdateBookModel Model { get; set; }
 
-    public UpdateBookCommand(BookStoreDbContext dbContext)
+    public DeleteBookCommand(BookStoreDbContext dbContext)
     {
       _dbContext = dbContext;
     }
@@ -20,19 +19,12 @@ namespace WebAPI.BookOperations.UpdateBook
     public void Handle()
     {
       var book = _dbContext.Books.SingleOrDefault(x => x.Id == BookId);
+
       if (book is null)
         throw new InvalidOperationException("Kitap Bulunamadi!");
 
-      book.GenreId = Model.GenreId != default ? Model.GenreId : book.GenreId;
-      book.Title = Model.Title != default ? Model.Title : book.Title;
+      _dbContext.Books.Remove(book);
       _dbContext.SaveChanges();
     }
   }
-
-  public class UpdateBookModel
-  {
-    public string Title { get; set; }
-    public int GenreId { get; set; }
-  }
-
 }
