@@ -2,7 +2,8 @@ using AutoMapper;
 using WebAPI.Application.BookOperations.Commands.CreateBook;
 using WebAPI.Application.BookOperations.Queries.GetBookDetail;
 using WebAPI.Application.BookOperations.Queries.GetBooks;
-using WebAPI.Application.GenreOperations.Queries;
+using WebAPI.Application.GenreOperations.Queries.GetGenreDetail;
+using WebAPI.Application.GenreOperations.Queries.GetGenres;
 using WebAPI.Entities;
 
 namespace WebAPI.Common
@@ -23,7 +24,8 @@ namespace WebAPI.Common
                 dest => dest.Genre, 
                 opt => opt.MapFrom(src => ((GenreEnum)src.GenreId).ToString()));
    
-      CreateMap<Genre, GenresViewModel>();   
+      CreateMap<Genre, GenresViewModel>();  
+      CreateMap<Genre, GenreDetailViewModel>(); 
     }
   }
 }
