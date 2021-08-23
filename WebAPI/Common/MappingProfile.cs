@@ -17,12 +17,12 @@ namespace WebAPI.Common
       CreateMap<Book, BookDetailViewModel>()
             .ForMember(
                 dest => dest.Genre, 
-                opt => opt.MapFrom(src => ((GenreEnum)src.GenreId).ToString()));
+                opt => opt.MapFrom(src => src.Genre.Name));
 
       CreateMap<Book, BooksViewModel>()
         .ForMember(
                 dest => dest.Genre, 
-                opt => opt.MapFrom(src => ((GenreEnum)src.GenreId).ToString()));
+                opt => opt.MapFrom(src => src.Genre.Name));
    
       CreateMap<Genre, GenresViewModel>();  
       CreateMap<Genre, GenreDetailViewModel>(); 
