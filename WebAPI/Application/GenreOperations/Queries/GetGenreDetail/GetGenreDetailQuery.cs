@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using AutoMapper;
 using WebAPI.DBOperations;
+using WebAPI.Entities;
 
 namespace WebAPI.Application.GenreOperations.Queries.GetGenreDetail
 {
@@ -20,8 +21,8 @@ namespace WebAPI.Application.GenreOperations.Queries.GetGenreDetail
     public GenreDetailViewModel Handle()
     {
       // Get only Genres that have isActive = true and Id = GenreID
-      var genre = _context.Genres
-                      .Where(x => x.IsActive == true && x.Id == GenreId);
+      var genre = _context.Genres.SingleOrDefault(x => x.IsActive == true && x.Id == GenreId);
+                      
       
       if (genre is null)
       {

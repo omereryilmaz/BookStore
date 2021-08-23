@@ -9,7 +9,7 @@ using WebAPI.Application.BookOperations.Queries.GetBooks;
 using WebAPI.Application.BookOperations.Commands.UpdateBook;
 using WebAPI.DBOperations;
 
-namespace WebAPI.AddControllers
+namespace WebAPI.Controllers
 {
 
   [ApiController]

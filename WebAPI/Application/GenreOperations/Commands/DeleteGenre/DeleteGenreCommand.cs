@@ -18,7 +18,7 @@ namespace WebAPI.Application.GenreOperations.Command.DeleteGenre
     {
       // Find genre for remove operation
       var genre = _context.Genres.SingleOrDefault(x => x.Id == GenreId);
-      if (genre is not null)      
+      if (genre is null)      
           throw new InvalidOperationException("Kitap Turu Bulunamadi!");
       
       _context.Genres.Remove(genre);
