@@ -11,9 +11,9 @@ namespace WebAPI.Application.BookOperations.Commands.CreateBook
   public class CreateBookCommand
   {
     public CreateBookModel Model { get; set; }
-    private readonly BookStoreDbContext _dbContext;
+    private readonly IBookStoreDbContext _dbContext;
     private readonly IMapper _mapper;
-    public CreateBookCommand(BookStoreDbContext dbContext, IMapper mapper)
+    public CreateBookCommand(IBookStoreDbContext dbContext, IMapper mapper)
     {
       _dbContext = dbContext;
       _mapper = mapper;
@@ -27,7 +27,7 @@ namespace WebAPI.Application.BookOperations.Commands.CreateBook
       
       book = _mapper.Map<Book>(Model);
 
-      _dbContext.Add(book);
+      _dbContext.Books.Add(book);
       _dbContext.SaveChanges();
     }
   }
