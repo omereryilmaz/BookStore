@@ -7,7 +7,7 @@ using WebAPI.DBOperations;
 using WebAPI.Entities;
 using Xunit;
 
-namespace Application.BookOperations.Commands.CreateCommand
+namespace Application.BookOperations.Commands.CreateBook
 {
   public class CreateBookCommandTests : IClassFixture<CommonTestFixture>
   {
