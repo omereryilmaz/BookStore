@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using AutoMapper;
 using FluentAssertions;
 using TestSetup;
@@ -46,6 +47,33 @@ namespace Application.BookOperations.Commands.CreateBook
         .Should().Throw<InvalidOperationException>()
             .And.Message
             .Should().Be("Kitap zaten mevcut!");
+    }
+
+    [Fact]
+    public void WhenValidInputsAreGiven_Book_ShouldBeCreated()
+    {
+       // Arrange
+      CreateBookCommand command = new CreateBookCommand(_context, _mapper);
+      CreateBookModel model = new CreateBookModel()
+      {
+        Title = "Hobbit",
+        PageCount = 130,
+        PublishDate = DateTime.Now.Date.AddYears(-5),
+        GenreId = 1
+      };
+      command.Model = model;
+      
+      // Act
+      FluentActions.Invoking(() => command.Handle()).Invoke();
+
+      // Assert
+      var book = _context.Books.SingleOrDefault(
+        book => book.Title == model.Title
+      );
+      book.Should().NotBeNull();
+      book.PageCount.Should().Be(model.PageCount);
+      book.PublishDate.Should().Be(model.PublishDate);
+      book.GenreId.Should().Be(model.GenreId);
     }
   }
 }
