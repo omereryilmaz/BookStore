@@ -22,7 +22,7 @@ namespace TestSetup
         Context.AddGenres();
         Context.SaveChanges();
 
-        Mapper = new MapperConfiguration(cfg => {cfg.AddProfile<MappingProfile>();}).CreateMapper();
+        Mapper = new MapperConfiguration(cfg => cfg.AddProfile<MappingProfile>()).CreateMapper();
     }
   }
 }
