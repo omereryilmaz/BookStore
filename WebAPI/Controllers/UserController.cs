@@ -30,7 +30,6 @@ namespace WebAPI.Controllers
       command.Handle();
 
       return Ok();
-    }
-    
+    }    
   }
 }
