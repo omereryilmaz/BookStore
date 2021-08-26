@@ -39,6 +39,9 @@ First you should install project dependency packages. To install the packages yo
 dotnet restore
 ```
 
+Second you should add app.settings.json file to  `../BookStore/WebAPI` directory. Because WebAPI gets the SecurityKey from there.
+
+<script src="https://gist.github.com/omereryilmaz/b07814359798c84372a92d3424cf1b5d.js"></script>
 
 To run the project:
 
