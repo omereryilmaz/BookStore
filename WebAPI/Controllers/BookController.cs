@@ -1,4 +1,3 @@
-using System;
 using AutoMapper;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
@@ -8,10 +7,11 @@ using WebAPI.Application.BookOperations.Queries.GetBookDetail;
 using WebAPI.Application.BookOperations.Queries.GetBooks;
 using WebAPI.Application.BookOperations.Commands.UpdateBook;
 using WebAPI.DBOperations;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebAPI.Controllers
 {
-
+  [Authorize]
   [ApiController]
   [Route("[controller]s")]
   public class BookController : ControllerBase
