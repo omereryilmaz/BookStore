@@ -39,9 +39,25 @@ First you should install project dependency packages. To install the packages yo
 dotnet restore
 ```
 
-Second you should add app.settings.json file to  `../BookStore/WebAPI` directory. Because WebAPI gets the SecurityKey from there.
+Second you should add `app.settings.json` file to  `../BookStore/WebAPI` directory. Because WebAPI gets the SecurityKey from there.
 
-{% gist b07814359798c84372a92d3424cf1b5d %}
+```json
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information"
+    }
+  },
+  "AllowedHosts": "*",
+  "Token":{
+    "Issuer":"www.test.com",
+    "Audience": "www.test.com",
+    "SecurityKey": "This is my custom secret key for authentication."
+  }
+}
+```
 
 To run the project:
 
