@@ -6,6 +6,7 @@ using WebAPI.Application.UserOperations.Commands.CreateUser;
 using Microsoft.Extensions.Configuration;
 using WebAPI.TokenOperations.Models;
 using WebAPI.Application.UserOperations.Commands.CreateToken;
+using WebAPI.Application.UserOperations.Commands.RefreshToken;
 
 namespace WebAPI.Controllers
 {
@@ -35,7 +36,7 @@ namespace WebAPI.Controllers
     }
 
     [HttpPost("connect/token")]
-    public ActionResult<Token> CreateToken([FromBody] CreateTokenModel login)
+    public ActionResult<Token> RefreshToken([FromBody] CreateTokenModel login)
     {
       CreateTokenCommand command = new CreateTokenCommand(_context, _mapper, _configuration);
       command.Model = login;
@@ -44,5 +45,14 @@ namespace WebAPI.Controllers
       return token;
     }
 
+    [HttpGet("refresh-token")]    
+    public ActionResult<Token> CreateToken([FromQuery] string token)
+    {
+      RefreshTokenCommand command = new RefreshTokenCommand(_context, _configuration);
+      command.RefreshToken = token;
+      var result = command.Handle();
+
+      return result;
+    }
   }
 }
