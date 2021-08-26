@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using WebAPI.DBOperations;
 using WebAPI.Application.UserOperations.Commands.CreateUser;
 using Microsoft.Extensions.Configuration;
+using WebAPI.TokenOperations.Models;
+using WebAPI.Application.UserOperations.Commands.CreateToken;
 
 namespace WebAPI.Controllers
 {
@@ -30,6 +32,17 @@ namespace WebAPI.Controllers
       command.Handle();
 
       return Ok();
-    }    
+    }
+
+    [HttpPost("connect/token")]
+    public ActionResult<Token> CreateToken([FromBody] CreateTokenModel login)
+    {
+      CreateTokenCommand command = new CreateTokenCommand(_context, _mapper, _configuration);
+      command.Model = login;
+      var token = command.Handle();
+
+      return token;
+    }
+
   }
 }
