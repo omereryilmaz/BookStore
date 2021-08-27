@@ -8,7 +8,7 @@ This API project has been made for to learn .NET 5.  In addition, the tutorial i
 * Fluent Validation
 * Dependency Injection
 * Custom Exception Middleware
-* Unit Test 
+* Test Driven Development - Unit Tests 
 * Authentication - JWT
 
 
