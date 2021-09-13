@@ -68,4 +68,4 @@ dotnet watch run
 You can use Swagger, [Postman](https://www.postman.com/) or [REST Client](https://github.com/Huachao/vscode-restclient) VSCode extension for api requests.
 
 ## Swagger ScreenShot
-![Image of Swagger](ReadmeImages/BookStore_swagger.png)
+![Image of Swagger](https://gist.githubusercontent.com/omereryilmaz/cc18ce16890aec2b61ee99595f1fb62e/raw/46902b324004037ffb563ab9ccb1ab296ede92bf/BookStoreSwagger.png)
